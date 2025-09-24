@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import numpy as np
 from PIL import Image
@@ -16,10 +16,9 @@ class GuessRequest(BaseModel):
 class GuessResponse(BaseModel):
     prediction: int
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/", response_class=FileResponse)
 async def read_root():
-    with open("index.html", "r") as f:
-        return HTMLResponse(content=f.read())
+        return FileResponse("static/index.html")
 
 # Initialize the model (this would be done once at startup)
 def load_model():
@@ -56,7 +55,7 @@ async def guess_number(request: GuessRequest):
 
         # Use the model to predict if available, otherwise use random prediction
         if model is not None:
-            pred, pred_idx, probs = model.predict(path)
+            pred, _, _ = model.predict(path)
             prediction = int(pred)
         else:
             # Fallback to random prediction for demo purposes
@@ -70,4 +69,4 @@ async def guess_number(request: GuessRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="localhost", port=8000)
