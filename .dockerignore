@@ -1,0 +1,7 @@
+.git
+.gitignore
+.claude
+*.pyc
+__pycache__/
+temp.png
+.DS_Store
