@@ -39,5 +39,5 @@ jobs:
           key: ${{ secrets.VPS_KEY }}
           script: |
             cd /root/apps
-            docker compose build --no-cache numberd
+            docker compose build --no-cache numbers
             docker compose up -d numbers
