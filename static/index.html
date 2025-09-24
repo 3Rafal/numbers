@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(28, 20px);
+            grid-template-rows: repeat(28, 20px);
+            gap: 0;                     /* no gaps */
+            border: 2px solid #999;
+        }
+
+        .cell {
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            cursor: crosshair;
+            border: 1px solid #ddd;     /* light border for visible grid lines */
+        }
+
+        .cell.black {
+            background-color: black;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #guessBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #guessBtn:hover {
+            background-color: #45a049;
+        }
+
+        #clearBtn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #clearBtn:hover {
+            background-color: #da190b;
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(28, 12px);
+                grid-template-rows: repeat(28, 12px);
+            }
+
+            .cell {
+                width: 12px;
+                height: 12px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Digit Recognition</h1>
+        <div class="grid" id="grid"></div>
+        <div class="controls">
+            <button id="clearBtn">Clear</button>
+            <button id="guessBtn">Guess</button>
+            <div id="result">?</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
